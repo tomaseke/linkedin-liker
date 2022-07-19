@@ -50,7 +50,8 @@ const browser = await puppeteer.launch();
   await browser.close();
   return true;
   }
-  catch{
+  catch(e) {
+    console.error(e);
   return false;
   }
 };
