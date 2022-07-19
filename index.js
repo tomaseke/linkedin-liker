@@ -5,8 +5,8 @@ const PORT = process.env.PORT || 3000;
 require("dotenv").config();
 
 app.get("/", async (req, res) => {
-  const worked = await like();
-  res.send(worked ? 'worked' : 'failed');
+  like();
+  res.send('hi');
 });
 
 app.listen(PORT, () => {
@@ -15,8 +15,7 @@ app.listen(PORT, () => {
 
 async function like() {
   try{
-    console.log(process.env.password);
-const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.goto("https://linkedin.com");
   await page.click(
@@ -49,10 +48,9 @@ const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
     allLikeButtons.forEach(btn => btn.click());
   })
   await browser.close();
-  return true;
+  console.log('worked');
   }
   catch(e) {
     console.error(e);
-  return false;
   }
 };
