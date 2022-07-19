@@ -15,8 +15,7 @@ app.listen(PORT, () => {
 
 async function like() {
   try{
-    console.log(process.env.password);
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({ args: ["--no-sandbox"], headless: false});
   const page = await browser.newPage();
   await page.goto("https://linkedin.com");
   await page.click(
@@ -25,6 +24,7 @@ async function like() {
   await page.type("#username", "tomasekerbenu@gmail.com", {delay: 50});
   await page.type("#password", process.env.password, {delay: 50});
   await page.click("button[type=submit]");
+  console.log(document.getElementById("error-for-password");
   await page.waitForSelector(".search-global-typeahead__collapsed-search-button-icon");
   await page.click(".search-global-typeahead__collapsed-search-button-icon");
   await page.type(".search-global-typeahead__input", 'decisionrules.io');
