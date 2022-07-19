@@ -24,7 +24,7 @@ async function like() {
   await page.type("#username", "tomasekerbenu@gmail.com", {delay: 50});
   await page.type("#password", process.env.password, {delay: 50});
   await page.click("button[type=submit]");
-  console.log(document.getElementById("error-for-password");
+  console.log(document.getElementById("error-for-password"));
   await page.waitForSelector(".search-global-typeahead__collapsed-search-button-icon");
   await page.click(".search-global-typeahead__collapsed-search-button-icon");
   await page.type(".search-global-typeahead__input", 'decisionrules.io');
@@ -48,10 +48,12 @@ async function like() {
     const allLikeButtons = document.querySelectorAll('button[aria-pressed=false].artdeco-button--tertiary ');
     allLikeButtons.forEach(btn => btn.click());
   })
-  await browser.close();
   console.log('worked');
   }
   catch(e) {
     console.error(e);
+  }
+  finally {
+  await browser.close();
   }
 };
