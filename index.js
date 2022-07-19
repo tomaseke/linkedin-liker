@@ -15,7 +15,7 @@ app.listen(PORT, () => {
 
 async function like() {
   try{
-const browser = await puppeteer.launch();
+const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.goto("https://linkedin.com");
   await page.click(
