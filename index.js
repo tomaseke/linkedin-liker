@@ -1,7 +1,21 @@
 const puppeteer = require("puppeteer");
+const express = require("express");
+const app = express();
+const PORT = 3000;
 require("dotenv").config();
-(async () => {
-  const browser = await puppeteer.launch({ headless: false });
+
+app.get("/", async (req, res) => {
+  const worked = await like();
+  res.send(worked ? 'worked' : 'failed');
+});
+
+app.listen(PORT, () => {
+   console.log(`Server is running on PORT: ${PORT}`);
+});
+
+async function like() {
+  try{
+const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://linkedin.com");
   await page.click(
@@ -34,4 +48,9 @@ require("dotenv").config();
     allLikeButtons.forEach(btn => btn.click());
   })
   await browser.close();
-})();
+  return true;
+  }
+  catch{
+  return false;
+  }
+};
