@@ -15,10 +15,15 @@ app.listen(PORT, () => {
 });
 
 async function like() {
-  const browser = await puppeteer.launch({args: ["--no-sandbox"]});
+  const browser = await puppeteer.launch({args: ["--no-sandbox"], headless: false});
   try {
     const page = await browser.newPage();
+    const navigationPromise = page.waitForNavigation({
+      waitUntil: "domcontentloaded",
+    });
     await page.goto("https://linkedin.com");
+    await navigationPromise;
+    await page.waitForSelector('a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]');
     await page.click(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
