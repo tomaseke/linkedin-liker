@@ -15,7 +15,7 @@ app.listen(PORT, () => {
 });
 
 async function like() {
-  const browser = await puppeteer.launch({args: ["--no-sandbox"], headless: false});
+  const browser = await puppeteer.launch({args: ["--no-sandbox"], headless: true});
   try {
     const page = await browser.newPage();
     const navigationPromise = page.waitForNavigation({
