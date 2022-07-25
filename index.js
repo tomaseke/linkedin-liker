@@ -41,11 +41,13 @@ async function like() {
     });
     await page.click("button.btn__primary--large.from__button--floating");
     await navigationPromise2;
-    const t = await page.$$("div#organic-otp-link-in-error-message");
-    console.log(t.length);
-    await page.waitForSelector(
+    await page.waitForTimeout(
+      15000
+    );
+    const t = await page.$$(
       ".search-global-typeahead__collapsed-search-button-icon"
     );
+    console.log(t.length);
     await page.click(".search-global-typeahead__collapsed-search-button-icon");
     await page.type(".search-global-typeahead__input", "decisionrules.io");
     await page.focus(".search-global-typeahead__collapsed-search-button-icon");
