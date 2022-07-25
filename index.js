@@ -33,7 +33,7 @@ async function like() {
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
     await page.type("#username", "tomasekerbenu@gmail.com", { delay: 50 });
-    await page.type("#password", process.env.PASSWORDs, { delay: 50 });
+    await page.type("#password", process.env.PASSWORD, { delay: 50 });
 
     const navigationPromise2 = page.waitForNavigation({
       waitUntil: "domcontentloaded",
