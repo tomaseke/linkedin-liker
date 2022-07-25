@@ -34,8 +34,8 @@ async function like() {
     );
     const n = await (await page.$$("#username")).length;
     console.log(n, 'username');
-    const n = await (await page.$$("#password")).length;
-    console.log(n, "password");
+    const n1 = await (await page.$$("#password")).length;
+    console.log(n1, "password");
     await page.type("#username", "tomasekerbenu@gmail.com", { delay: 50 });
     await page.type("#password", process.env.password, { delay: 50 });
 
