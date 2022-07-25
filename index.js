@@ -18,6 +18,7 @@ async function like() {
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
     // headless: false,
+    // pico uz ale
   });
   try {
     const page = await browser.newPage();
