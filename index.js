@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
+const { log } = require("console");
 const app = express();
 const PORT = process.env.PORT || 3000;
 require("dotenv").config();
@@ -27,7 +28,7 @@ async function like() {
   await page.type("#username", "tomasekerbenu@gmail.com", {delay: 50});
   await page.type("#password", process.env.password, {delay: 50});
   await page.click("button[type=submit]");
-  console.log(document.getElementById("error-for-password"));
+  await page.waitForTimeout(6000);
   await page.waitForSelector(".search-global-typeahead__collapsed-search-button-icon");
   await page.click(".search-global-typeahead__collapsed-search-button-icon");
   await page.type(".search-global-typeahead__input", 'decisionrules.io');
@@ -48,7 +49,7 @@ async function like() {
   await page.keyboard.press("Enter");
   await page.waitForTimeout(6000);
   await page.evaluate(async () => {
-    const allLikeButtons = document.querySelectorAll('button[aria-pressed=false].artdeco-button--tertiary ');
+    const allLikeButtons = document.querySelectorAll('button[aria-pressed=false].artdeco-button--tertiary');
     allLikeButtons.forEach(btn => btn.click());
   })
   console.log('worked');
