@@ -29,19 +29,21 @@ async function like() {
     await page.waitForSelector(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
+    const n1 = await (await page.$$('a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]')).length;
+    console.log(n1);
     await page.click(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
-    const n = await (await page.$$("#username")).length;
-    console.log(n, 'username');
-    const n1 = await (await page.$$("#password")).length;
-    console.log(n1, "password");
     await page.type("#username", "tomasekerbenu@gmail.com", { delay: 50 });
     await page.type("#password", process.env.password, { delay: 50 });
 
     const navigationPromise2 = page.waitForNavigation({
       waitUntil: "domcontentloaded",
     });
+     const n1 = await (
+       await page.$$("button.btn__primary--large.from__button--floating")
+     ).length;
+     console.log(n1);
     await page.click("button.btn__primary--large.from__button--floating");
     await navigationPromise2;
     await page.waitForSelector(
