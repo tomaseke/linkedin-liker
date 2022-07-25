@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 async function like() {
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
-    headless: false,
+    // headless: false,
     // pico uz ale
   });
   try {
