@@ -15,7 +15,7 @@ app.listen(PORT, () => {
 });
 
 async function like() {
-  const browser = await puppeteer.launch({args: ["--no-sandbox"]});
+  const browser = await puppeteer.launch({args: ["--no-sandbox"], headless: false});
   try {
     const page = await browser.newPage();
     await page.goto("https://linkedin.com");
@@ -24,7 +24,8 @@ async function like() {
     );
     await page.type("#username", "tomasekerbenu@gmail.com", { delay: 50 });
     await page.type("#password", process.env.password, { delay: 50 });
-    await page.click("button[type=submit]");
+
+    await page.click("button.btn__primary--large.from__button--floating");
     await page.waitForTimeout(6000);
     await page.waitForSelector(
       ".search-global-typeahead__collapsed-search-button-icon"
