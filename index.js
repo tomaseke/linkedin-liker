@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 async function like() {
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
-    // headless: false,
+    headless: false,
     // pico uz ale
   });
   try {
@@ -41,43 +41,38 @@ async function like() {
     });
     await page.click("button.btn__primary--large.from__button--floating");
     await navigationPromise2;
-    await page.waitForTimeout(
-      15000
-    );
-    const t = await page.$$(
-      ".search-global-typeahead__collapsed-search-button-icon"
-    );
+    const t = await page.$$("button#ember17");
     console.log(t.length);
-    await page.click(".search-global-typeahead__collapsed-search-button-icon");
-    await page.type(".search-global-typeahead__input", "decisionrules.io");
-    await page.focus(".search-global-typeahead__collapsed-search-button-icon");
-    await page.waitForTimeout(6000);
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("Enter");
-    await page.waitForSelector(".image-text-lockup__text");
-    await page.click(".image-text-lockup__text");
-    await page.waitForSelector('a[href="/company/decisionrules-io/posts/"]');
-    await page.click('a[href="/company/decisionrules-io/posts/"]');
-    await page.waitForSelector(
-      'button[data-control-name="feed_sort_dropdown_trigger"]'
-    );
-    await page.click('button[data-control-name="feed_sort_dropdown_trigger"]');
-    await page.waitForTimeout(2000);
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("ArrowDown");
-    await page.waitForTimeout(2000);
-    await page.keyboard.press("Enter");
-    await page.waitForTimeout(6000);
-    await page.evaluate(async () => {
-      const allLikeButtons = document.querySelectorAll(
-        "button[aria-pressed=false].artdeco-button--tertiary"
-      );
-      allLikeButtons.forEach((btn) => btn.click());
-    });
-    console.log("worked");
+    // await page.click(".search-global-typeahead__collapsed-search-button-icon");
+    // await page.type(".search-global-typeahead__input", "decisionrules.io");
+    // await page.focus(".search-global-typeahead__collapsed-search-button-icon");
+    // await page.waitForTimeout(6000);
+    // await page.keyboard.press("ArrowDown");
+    // await page.keyboard.press("Enter");
+    // await page.waitForSelector(".image-text-lockup__text");
+    // await page.click(".image-text-lockup__text");
+    // await page.waitForSelector('a[href="/company/decisionrules-io/posts/"]');
+    // await page.click('a[href="/company/decisionrules-io/posts/"]');
+    // await page.waitForSelector(
+    //   'button[data-control-name="feed_sort_dropdown_trigger"]'
+    // );
+    // await page.click('button[data-control-name="feed_sort_dropdown_trigger"]');
+    // await page.waitForTimeout(2000);
+    // await page.keyboard.press("ArrowDown");
+    // await page.keyboard.press("ArrowDown");
+    // await page.waitForTimeout(2000);
+    // await page.keyboard.press("Enter");
+    // await page.waitForTimeout(6000);
+    // await page.evaluate(async () => {
+    //   const allLikeButtons = document.querySelectorAll(
+    //     "button[aria-pressed=false].artdeco-button--tertiary"
+    //   );
+    //   allLikeButtons.forEach((btn) => btn.click());
+    // });
+    // console.log("worked");
   } catch (e) {
     console.error(e);
   } finally {
-    await browser.close();
+    // await browser.close();
   }
 }
