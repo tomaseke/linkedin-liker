@@ -29,8 +29,8 @@ async function like() {
     await page.waitForSelector(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
-    const n1 = await (await page.$$('a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]')).length;
-    console.log(n1);
+    const n2 = await (await page.$$('a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]')).length;
+    console.log(n2);
     await page.click(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
