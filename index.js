@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 async function like() {
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
-    // headless: true,
+    // headless: false,
   });
   try {
     const page = await browser.newPage();
@@ -29,23 +29,19 @@ async function like() {
     await page.waitForSelector(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
-    const n2 = await (await page.$$('a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]')).length;
-    console.log(n2);
     await page.click(
       'a[data-tracking-control-name="guest_homepage-basic_nav-header-signin"]'
     );
     await page.type("#username", "tomasekerbenu@gmail.com", { delay: 50 });
-    await page.type("#password", process.env.password, { delay: 50 });
+    await page.type("#password", process.env.PASSWORDs, { delay: 50 });
 
     const navigationPromise2 = page.waitForNavigation({
       waitUntil: "domcontentloaded",
     });
-     const n1 = await (
-       await page.$$("button.btn__primary--large.from__button--floating")
-     ).length;
-     console.log(n1);
     await page.click("button.btn__primary--large.from__button--floating");
     await navigationPromise2;
+    const t = await page.$$("div#organic-otp-link-in-error-message");
+    console.log(t.length);
     await page.waitForSelector(
       ".search-global-typeahead__collapsed-search-button-icon"
     );
